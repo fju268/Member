@@ -1,5 +1,6 @@
 package com.fju.member;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,6 +22,17 @@ public class MainActivity extends AppCompatActivity {
     private String g;
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode==10){
+            if (resultCode==RESULT_OK){
+                edname.setText(n+"");
+                edage.setText(a+"");
+                edgender.setText(g+"");
+            }
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -35,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
         n = perf.getString("name","");
         a = perf.getString("age","");
         g = perf.getString("gender","");
-        if (n.equals("")&&a.equals("")&&g.equals("")){
+        if (age.equals("")&&b.equals("")&&c.equals("")){
             Intent intent = new Intent(MainActivity.this,NicknameActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,10);
         }
 
     }
+
 }
