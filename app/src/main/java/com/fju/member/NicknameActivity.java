@@ -27,26 +27,26 @@ public class NicknameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences pref = getSharedPreferences("exam",MODE_PRIVATE);
                 pref.edit().putString("name",ednickname.getText().toString()).commit();
-                NicknameActivity.this.setResult(RESULT_OK);
                 Log.d("123", "onClick: "+ednickname.getText().toString());
                 Intent intent = new Intent(NicknameActivity.this,AgeActivity.class);
-                startActivity(intent);
-                finish();
+                NicknameActivity.this.setResult(RESULT_OK);
+                startActivityForResult(intent,100);
             }
         });
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        if (requestCode==100){
-//            if (resultCode==70){
-//                SharedPreferences pref = getSharedPreferences("exam",MODE_PRIVATE);
-//                if (!pref.getString("gender","").equals("")&&!pref.getString("age","").equals("")&&!pref.getString("name","").equals("")){
-//                    finish();
-//                }
-//
-//            }
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode==100){
+            if (resultCode==70){
+                SharedPreferences pref = getSharedPreferences("exam",MODE_PRIVATE);
+                if (!pref.getString("gender","").equals("")&&!pref.getString("age","").equals("")&&!pref.getString("name","").equals("")){
+                    Log.d("111", "onActivityResult: ");
+                    finish();
+                }
+
+            }
+        }
+    }
 }

@@ -25,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode==10){
             if (resultCode==RESULT_OK){
+                SharedPreferences perf = getSharedPreferences("exam",MODE_PRIVATE);
+                n = perf.getString("name","");
+                a = perf.getString("age","");
+                g = perf.getString("gender","");
                 edname.setText(n+"");
                 edage.setText(a+"");
                 edgender.setText(g+"");
@@ -37,16 +41,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
-        SharedPreferences perf = getSharedPreferences("exam",MODE_PRIVATE);
+
         edname = findViewById(R.id.name);
         edage = findViewById(R.id.age);
         edgender = findViewById(R.id.gender);
         String age = edname.getText().toString();
         String b = edage.getText().toString();
         String c = edgender.getText().toString();
-        n = perf.getString("name","");
-        a = perf.getString("age","");
-        g = perf.getString("gender","");
+
         if (age.equals("")&&b.equals("")&&c.equals("")){
             Intent intent = new Intent(MainActivity.this,NicknameActivity.class);
             startActivityForResult(intent,10);

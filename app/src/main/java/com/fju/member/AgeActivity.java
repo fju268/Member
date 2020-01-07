@@ -29,24 +29,26 @@ public class AgeActivity extends AppCompatActivity {
                 pref.edit().putString("age",edage.getText().toString()).commit();
                 Log.d("456", "onClick: "+edage.getText().toString());
                 Intent intent = new Intent(AgeActivity.this,GenderActivity.class);
-//                AgeActivity.this.setResult(70);
-                startActivity(intent);
-                finish();
+                startActivityForResult(intent,20);
+
             }
         });
 
 
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        if (requestCode==20){
-//            if (resultCode==40){
-//                Log.d("rere", "onActivityResult: ");
-//                SharedPreferences pref = getSharedPreferences("exam",MODE_PRIVATE);
-//                if (!pref.getString("gender","").equals("")&&!pref.getString("age","").equals(""))
-//                finish();
-//            }
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode==20){
+            if (resultCode==40){
+                Log.d("rere", "onActivityResult: ");
+                SharedPreferences pref = getSharedPreferences("exam",MODE_PRIVATE);
+                if (!pref.getString("gender","").equals("")&&!pref.getString("age","").equals("")) {
+                    Log.d("222", "onActivityResult: ");
+                    AgeActivity.this.setResult(70);
+                    finish();
+                }
+            }
+        }
+    }
 }

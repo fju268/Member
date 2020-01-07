@@ -26,7 +26,7 @@ public class GenderActivity extends AppCompatActivity {
                 SharedPreferences pref = getSharedPreferences("exam",MODE_PRIVATE);
                 pref.edit().putString("gender",edgender.getText().toString()).commit();
                 Log.d("789", "onClick: "+edgender.getText().toString());
-//                GenderActivity.this.setResult(40);
+                GenderActivity.this.setResult(40);
                 finish();
             }
         });
